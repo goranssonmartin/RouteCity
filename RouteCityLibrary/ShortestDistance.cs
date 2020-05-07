@@ -7,9 +7,6 @@ namespace RouteCityLibrary
 {
     public class ShortestDistance
     {
-
-       
-
         //Source is the starting point and target the choosen node to find the shortest path between them.
         public int ShortestPath(int[][] nodeNetwork, int source, int target)
         {
@@ -37,6 +34,7 @@ namespace RouteCityLibrary
             return distance[target];
         }
 
+        //Method that checks for minimum distance from the source when called
         private static int MinDistanceBetweenNodes(int[] distance, bool[] shortestPathTreeSet)
         {
             int min = int.MaxValue;

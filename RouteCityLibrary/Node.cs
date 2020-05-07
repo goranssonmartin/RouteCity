@@ -8,6 +8,7 @@ namespace RouteCityLibrary
         //Method to create the network with random weights between the nodes.
         public int[][] CreateNodeNetwork()
         {
+            ShortestDistance sd = new ShortestDistance();
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
             int[][] nodeNetwork = SetAllNodeConnectionsToZero();
@@ -19,7 +20,7 @@ namespace RouteCityLibrary
                 while (NumberOfConnections(nodeNetwork[i], connectionsPerNode[i]))
                 {
                     //using time prevent the loop from being infinite and instead returns CreateNodeNetwork when max time is exceeded
-                    if (ts.TotalMilliseconds < 50)
+                    if (ts.TotalMilliseconds < 100)
                     {
                         int nodeWeight = rand.Next(1, 11);
                         int nodeToConnect = rand.Next(0, 10);
@@ -34,6 +35,12 @@ namespace RouteCityLibrary
                         return CreateNodeNetwork();
                     }
 
+                }
+            }
+            //checks distance between node 1 and all other nodes to make sure the network is closed, else returns CreateNodeNetwork
+            for (int i = 0; i < 10; i++) {
+                if (sd.ShortestPath(nodeNetwork, 0, i) > 1000) {
+                    return CreateNodeNetwork();
                 }
             }
             return nodeNetwork;

@@ -65,7 +65,7 @@
             this.findPathButton.TabIndex = 4;
             this.findPathButton.Text = "Find shortest path";
             this.findPathButton.UseVisualStyleBackColor = true;
-            this.findPathButton.Click += new System.EventHandler(this.findPathButton_Click);
+            this.findPathButton.Click += new System.EventHandler(this.FindPathButton_Click);
             // 
             // selectStartNodeComboBox
             // 
@@ -91,6 +91,10 @@
             this.nodeNetworkGridView.ReadOnly = true;
             this.nodeNetworkGridView.Size = new System.Drawing.Size(351, 272);
             this.nodeNetworkGridView.TabIndex = 7;
+            this.nodeNetworkGridView.AllowUserToAddRows = false;
+            this.nodeNetworkGridView.AllowUserToDeleteRows = false;
+            this.nodeNetworkGridView.AllowUserToResizeColumns = false;
+            this.nodeNetworkGridView.AllowUserToResizeRows = false;
             // 
             // resultText
             // 

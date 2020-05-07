@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RouteCityLibrary", "RouteCi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RouteCityTests", "RouteCityTests\RouteCityTests.csproj", "{6A45F287-CE09-44EF-80AB-9E51CB1B91E3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RouteCityConsole", "RouteCityConsole\RouteCityConsole.csproj", "{C5221FD2-201A-47A0-B534-493F77AAD22F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteCityForms", "RouteCityForms\RouteCityForms.csproj", "{3E355743-B446-4CFA-BE93-65D505302E51}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{6A45F287-CE09-44EF-80AB-9E51CB1B91E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A45F287-CE09-44EF-80AB-9E51CB1B91E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A45F287-CE09-44EF-80AB-9E51CB1B91E3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C5221FD2-201A-47A0-B534-493F77AAD22F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5221FD2-201A-47A0-B534-493F77AAD22F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5221FD2-201A-47A0-B534-493F77AAD22F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5221FD2-201A-47A0-B534-493F77AAD22F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3E355743-B446-4CFA-BE93-65D505302E51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3E355743-B446-4CFA-BE93-65D505302E51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E355743-B446-4CFA-BE93-65D505302E51}.Release|Any CPU.ActiveCfg = Release|Any CPU

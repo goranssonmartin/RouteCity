@@ -24,6 +24,7 @@ namespace RouteCityForms
             AddComboBoxValues();
         }
 
+        //adds a column for each node in nodeNetwork to the datagridview
         private void AddColumnsToDataGridView()
         {
             DataGridViewColumn one = new DataGridViewColumn
@@ -106,30 +107,38 @@ namespace RouteCityForms
             };
             nodeNetworkGridView.Columns.Add(ten);
         }
-        private void AddComboBoxValues() {
-            for (int i = 1; i< 11; i++) {
+
+        //adds all values to the combobox with the available node choices
+        private void AddComboBoxValues()
+        {
+            for (int i = 1; i < 11; i++)
+            {
                 selectStartNodeComboBox.Items.Add(i);
                 selectEndNodeComboBox.Items.Add(i);
             }
             selectStartNodeComboBox.SelectedIndex = 0;
             selectEndNodeComboBox.SelectedIndex = 0;
         }
-        private void AddRowsToDataGridView() {
+        //adds rows to the datagridview based of the nodeNetwork array
+        private void AddRowsToDataGridView()
+        {
             nodeNetworkGridView.RowCount = 10;
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 10; i++)
+            {
                 for (int j = 0; j < 10; j++)
                 {
-                    nodeNetworkGridView.Rows[j].Cells[i].Value = nodeNetwork[i][j].ToString();
+                    nodeNetworkGridView.Rows[j].Cells[i].Value = nodeNetwork[i][j];
                 }
             }
-        
+
         }
 
-        private void findPathButton_Click(object sender, EventArgs e)
+        //Calculates the path weight of the two given nodes
+        private void FindPathButton_Click(object sender, EventArgs e)
         {
             ShortestDistance sd = new ShortestDistance();
-            int shortestPathWeight = sd.ShortestPath(nodeNetwork,selectStartNodeComboBox.SelectedIndex,selectEndNodeComboBox.SelectedIndex);
-            resultText.Text = shortestPathWeight.ToString();
+            int shortestPathWeight = sd.ShortestPath(nodeNetwork, selectStartNodeComboBox.SelectedIndex, selectEndNodeComboBox.SelectedIndex);
+            resultText.Text = "The shortest path between \"" + (selectStartNodeComboBox.SelectedIndex + 1) + "\" and \"" + (selectEndNodeComboBox.SelectedIndex + 1) + "\" has a weight of " + shortestPathWeight.ToString()+".";
         }
     }
 }
