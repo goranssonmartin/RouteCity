@@ -7,7 +7,6 @@ namespace RouteCityConsole
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("lol");
             Node nd = new Node();
             int[][] array = nd.CreateNodeNetwork();
             for (int i = 0; i < 10; i++)

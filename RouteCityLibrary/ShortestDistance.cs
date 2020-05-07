@@ -8,25 +8,25 @@ namespace RouteCityLibrary
     public class ShortestDistance
     {
 
-        private static int MinDistanceBetweenNodes(int[] distance, bool[] shortestPathTreeSet)
-        {
-            int min = int.MaxValue;
-            int minIndex = 0;
-
-            for (int v = 0; v < 10; v++)
-            {
-                if (shortestPathTreeSet[v] == false && distance[v] <= min)
-                {
-                    min = distance[v];
-                    minIndex = v;
-                }
-            }
-
-            return minIndex;
-        }
+       private static int MinDistanceBetweenNodes(int[] distance, bool[] shortestPathTreeSet)
+       {
+           int min = int.MaxValue;
+           int minIndex = 0;
+      
+           for (int v = 0; v < 10; v++)
+           {
+               if (shortestPathTreeSet[v] == false && distance[v] <= min)
+               {
+                   min = distance[v];
+                   minIndex = v;
+               }
+           }
+      
+           return minIndex;
+       }
 
         //Source is the starting point and target the choosen node to find the shortest path between them.
-        public int ShortestPath(int[][] graph, int source, int target)
+        public int ShortestPath(int[][] nodeNetwork, int source, int target)
         {
             int[] distance = new int[10];
             bool[] shortestPathTreeSet = new bool[10];
@@ -43,9 +43,11 @@ namespace RouteCityLibrary
             {
                 int u = MinDistanceBetweenNodes(distance, shortestPathTreeSet);
                 shortestPathTreeSet[u] = true;
-
-                if (!shortestPathTreeSet[target] && Convert.ToBoolean(graph[u][target]) && distance[u] != int.MaxValue && distance[u] + graph[u][target] < distance[target])
-                distance[target] = distance[u] + graph[u][target];
+                for (int v = 0; v < 10; v++)
+                {
+                    if (!shortestPathTreeSet[v] && Convert.ToBoolean(nodeNetwork[u][v]) && distance[u] != int.MaxValue && distance[u] + nodeNetwork[u][v] < distance[v])
+                        distance[v] = distance[u] + nodeNetwork[u][v];
+                }
             }
             return distance[target];
         }

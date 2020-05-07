@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace RouteCityLibrary
 {
@@ -7,20 +8,30 @@ namespace RouteCityLibrary
         //Method to create the network with random weights between the nodes.
         public int[][] CreateNodeNetwork()
         {
-            int[][] nodeNetwork = SetAllValuesToZero();
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            int[][] nodeNetwork = SetAllNodeConnectionsToZero();
             int[] connectionsPerNode = SetNumberOfConnectionsPerNode();
-
+            TimeSpan ts = stopWatch.Elapsed;
             for (int i = 0; i < 10; i++)
             {
                 Random rand = new Random();
                 while (NumberOfConnections(nodeNetwork[i], connectionsPerNode[i]))
                 {
-                    int nodeWeight = rand.Next(0, 11);
-                    int nodeToConnect = rand.Next(0, 10);
-                    if (nodeToConnect != i && NumberOfConnections(nodeNetwork[nodeToConnect], connectionsPerNode[nodeToConnect]))
+                    //using time prevent the loop from being infinite and instead returns CreateNodeNetwork when max time is exceeded
+                    if (ts.TotalMilliseconds < 50)
                     {
-                        nodeNetwork[i][nodeToConnect] = nodeWeight;
-                        nodeNetwork[nodeToConnect][i] = nodeWeight;
+                        int nodeWeight = rand.Next(1, 11);
+                        int nodeToConnect = rand.Next(0, 10);
+                        if (nodeToConnect != i && NumberOfConnections(nodeNetwork[nodeToConnect], connectionsPerNode[nodeToConnect]))
+                        {
+                            nodeNetwork[i][nodeToConnect] = nodeWeight;
+                            nodeNetwork[nodeToConnect][i] = nodeWeight;
+                        }
+                        ts = stopWatch.Elapsed;
+                    }
+                    else {
+                        return CreateNodeNetwork();
                     }
 
                 }
@@ -28,7 +39,7 @@ namespace RouteCityLibrary
             return nodeNetwork;
         }
 
-
+        //creates an array where each nodes number of connections is randomized
         private int[] SetNumberOfConnectionsPerNode()
         {
             int[] numberOfConnections = new int[10];
@@ -40,12 +51,13 @@ namespace RouteCityLibrary
             return numberOfConnections;
         }
 
+        //checks the number of connections the node already has by counting each value for that node that isn't 0
         private bool NumberOfConnections(int[] node, int numberOfConnections)
         {
             int connections = 0;
-            foreach (int conn in node)
+            foreach (int connectedNode in node)
             {
-                if (conn != 0)
+                if (connectedNode != 0)
                 {
                     connections++;
                 }
@@ -60,19 +72,20 @@ namespace RouteCityLibrary
             }
         }
 
-        private int[][] SetAllValuesToZero()
+        //creates a 10x10 int array with zero as default value for each node
+        private int[][] SetAllNodeConnectionsToZero()
         {
-            int[][] returnArray = new int[10][];
+            int[][] collectionOfNodes = new int[10][];
             for (int i = 0; i < 10; i++)
             {
-                int[] row = new int[10];
+                int[] individualNode = new int[10];
                 for (int j = 0; j < 10; j++)
                 {
-                    row[j] = 0;
+                    individualNode[j] = 0;
                 }
-                returnArray[i] = row;
+                collectionOfNodes[i] = individualNode;
             }
-            return returnArray;
+            return collectionOfNodes;
         }
     }
 }

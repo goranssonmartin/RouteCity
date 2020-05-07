@@ -31,7 +31,6 @@ namespace RouteCityTests
             int shortestPath = sd.ShortestPath(testNodeNetwork, source, target);
             Assert.AreEqual(10, shortestPath);
         }
-
         [Test]
         public void TestShortestPathBetweenTheSameNode()
         {
