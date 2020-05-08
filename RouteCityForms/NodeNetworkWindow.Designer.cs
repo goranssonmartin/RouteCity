@@ -1,6 +1,6 @@
 ﻿namespace RouteCityForms
 {
-    partial class Form1
+    partial class NodeNetworkWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -36,9 +36,10 @@
             this.nodeNetworkGridView = new System.Windows.Forms.DataGridView();
             this.resultText = new System.Windows.Forms.Label();
             this.explanationLabel = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.nodeNetworkDrawing = new System.Windows.Forms.PictureBox();
+            this.createNewNetworkButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nodeNetworkGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nodeNetworkDrawing)).BeginInit();
             this.SuspendLayout();
             // 
             // startNode
@@ -116,20 +117,31 @@
             this.explanationLabel.Text = "Every column is a node and each row shows which node it is connected to and what " +
     "weight the connection has";
             // 
-            // pictureBox1
+            // nodeNetworkDrawing
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(374, 166);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(500, 250);
-            this.pictureBox1.TabIndex = 10;
-            this.pictureBox1.TabStop = false;
+            this.nodeNetworkDrawing.Location = new System.Drawing.Point(374, 166);
+            this.nodeNetworkDrawing.Name = "nodeNetworkDrawing";
+            this.nodeNetworkDrawing.Size = new System.Drawing.Size(500, 250);
+            this.nodeNetworkDrawing.TabIndex = 10;
+            this.nodeNetworkDrawing.TabStop = false;
             // 
-            // Form1
+            // createNewNetworkButton
+            // 
+            this.createNewNetworkButton.Location = new System.Drawing.Point(797, 13);
+            this.createNewNetworkButton.Name = "createNewNetworkButton";
+            this.createNewNetworkButton.Size = new System.Drawing.Size(117, 23);
+            this.createNewNetworkButton.TabIndex = 11;
+            this.createNewNetworkButton.Text = "Create new network";
+            this.createNewNetworkButton.UseVisualStyleBackColor = true;
+            this.createNewNetworkButton.Click += new System.EventHandler(this.CreateNewNetworkButton_Click);
+            // 
+            // NodeNetworkWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(926, 450);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.createNewNetworkButton);
+            this.Controls.Add(this.nodeNetworkDrawing);
             this.Controls.Add(this.explanationLabel);
             this.Controls.Add(this.resultText);
             this.Controls.Add(this.nodeNetworkGridView);
@@ -138,10 +150,10 @@
             this.Controls.Add(this.findPathButton);
             this.Controls.Add(this.endNode);
             this.Controls.Add(this.startNode);
-            this.Name = "Form1";
+            this.Name = "NodeNetworkWindow";
             this.Text = "Find the shortest path between two nodes";
             ((System.ComponentModel.ISupportInitialize)(this.nodeNetworkGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nodeNetworkDrawing)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,7 +169,8 @@
         private System.Windows.Forms.DataGridView nodeNetworkGridView;
         private System.Windows.Forms.Label resultText;
         private System.Windows.Forms.Label explanationLabel;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox nodeNetworkDrawing;
+        private System.Windows.Forms.Button createNewNetworkButton;
     }
 }
 
