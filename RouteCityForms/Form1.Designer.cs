@@ -36,7 +36,9 @@
             this.nodeNetworkGridView = new System.Windows.Forms.DataGridView();
             this.resultText = new System.Windows.Forms.Label();
             this.explanationLabel = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.nodeNetworkGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // startNode
@@ -85,16 +87,16 @@
             // 
             // nodeNetworkGridView
             // 
+            this.nodeNetworkGridView.AllowUserToAddRows = false;
+            this.nodeNetworkGridView.AllowUserToDeleteRows = false;
+            this.nodeNetworkGridView.AllowUserToResizeColumns = false;
+            this.nodeNetworkGridView.AllowUserToResizeRows = false;
             this.nodeNetworkGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.nodeNetworkGridView.Location = new System.Drawing.Point(16, 166);
             this.nodeNetworkGridView.Name = "nodeNetworkGridView";
             this.nodeNetworkGridView.ReadOnly = true;
             this.nodeNetworkGridView.Size = new System.Drawing.Size(351, 272);
             this.nodeNetworkGridView.TabIndex = 7;
-            this.nodeNetworkGridView.AllowUserToAddRows = false;
-            this.nodeNetworkGridView.AllowUserToDeleteRows = false;
-            this.nodeNetworkGridView.AllowUserToResizeColumns = false;
-            this.nodeNetworkGridView.AllowUserToResizeRows = false;
             // 
             // resultText
             // 
@@ -109,15 +111,25 @@
             this.explanationLabel.AutoSize = true;
             this.explanationLabel.Location = new System.Drawing.Point(16, 147);
             this.explanationLabel.Name = "explanationLabel";
-            this.explanationLabel.Size = new System.Drawing.Size(35, 13);
+            this.explanationLabel.Size = new System.Drawing.Size(535, 13);
             this.explanationLabel.TabIndex = 9;
-            this.explanationLabel.Text = "Every column is a node and each row shows which node it is connected to and what weight the connection has";
+            this.explanationLabel.Text = "Every column is a node and each row shows which node it is connected to and what " +
+    "weight the connection has";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(374, 166);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(500, 250);
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(926, 450);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.explanationLabel);
             this.Controls.Add(this.resultText);
             this.Controls.Add(this.nodeNetworkGridView);
@@ -129,6 +141,7 @@
             this.Name = "Form1";
             this.Text = "Find the shortest path between two nodes";
             ((System.ComponentModel.ISupportInitialize)(this.nodeNetworkGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,6 +157,7 @@
         private System.Windows.Forms.DataGridView nodeNetworkGridView;
         private System.Windows.Forms.Label resultText;
         private System.Windows.Forms.Label explanationLabel;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
