@@ -193,7 +193,7 @@ namespace RouteCityForms
                     Font myFont = new Font("Arial", 12, FontStyle.Bold);
                     //draws and ellipse and types the node name inside of it
                     g.DrawEllipse(pen, new Rectangle(listOfNodeCoordinates[i].xCoord, listOfNodeCoordinates[i].yCoord, 25, 25));
-                    g.DrawString((listOfNodeCoordinates[i].whichNode + 1).ToString(), myFont, Brushes.Black, listOfNodeCoordinates[i].xCoord+4, listOfNodeCoordinates[i].yCoord + 5);
+                    g.DrawString((listOfNodeCoordinates[i].whichNode + 1).ToString(), myFont, Brushes.Black, listOfNodeCoordinates[i].xCoord + 4, listOfNodeCoordinates[i].yCoord + 5);
                     pen.Dispose();
                 }
             }
@@ -305,12 +305,44 @@ namespace RouteCityForms
         //Calculates the path weight of the two given nodes
         private void FindPathButton_Click(object sender, EventArgs e)
         {
+            shortestPathText.Text = "Shortest path is: ";
             ShortestDistance sd = new ShortestDistance();
-            int shortestPathWeight = sd.ShortestPath(nodeNetwork, selectStartNodeComboBox.SelectedIndex, selectEndNodeComboBox.SelectedIndex);
-            resultText.Text = "The shortest path between \"" + (selectStartNodeComboBox.SelectedIndex + 1) + "\" and \"" + (selectEndNodeComboBox.SelectedIndex + 1) + "\" has a weight of " + shortestPathWeight.ToString() + ".";
+            int sourceNode = selectStartNodeComboBox.SelectedIndex;
+            int endNode = selectEndNodeComboBox.SelectedIndex;
+            int[][] result = sd.ShortestPath(nodeNetwork, sourceNode,endNode );
+            int shortestPathWeight = result[0][0];
+            int[] path = result[1];
+            if (shortestPathWeight != 0)
+            {
+                PrintPathWay(endNode, path, endNode);
+            }
+            else
+            {
+                shortestPathText.Text = "Shortest path doesn't exist because start and end nodes are the same";
+            }
+            resultText.Text = "The shortest path between \"" + (sourceNode + 1) + "\" and \"" + (endNode + 1) + "\" has a weight of " + shortestPathWeight.ToString() + ".";
         }
 
-        //resets the program based on a new netowkr of nodes
+        //Prints the shortest path between two ndoes
+        public void PrintPathWay(int currentVertex, int[] nodePaths, int targetNode)
+        {
+            if (currentVertex == -1)
+            {
+                return;
+            }
+            PrintPathWay(nodePaths[currentVertex], nodePaths, targetNode);
+            if (currentVertex != targetNode)
+            {
+                shortestPathText.Text = shortestPathText.Text + (currentVertex + 1) + " -> ";
+            }
+            else
+            {
+
+                shortestPathText.Text = shortestPathText.Text + (currentVertex + 1) + ".";
+            }
+        }
+
+        //resets the program based on a new network of nodes
         private void CreateNewNetworkButton_Click(object sender, EventArgs e)
         {
             listOfDrawnPaths.Clear();
@@ -319,6 +351,7 @@ namespace RouteCityForms
             selectStartNodeComboBox.SelectedIndex = 0;
             selectEndNodeComboBox.SelectedIndex = 0;
             resultText.Text = "";
+            shortestPathText.Text = "";
             nodeNetwork = nd.CreateNodeNetwork();
             nodeNetworkGridView.Rows.Clear();
             nodeNetworkGridView.Columns.Clear();

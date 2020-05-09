@@ -28,7 +28,7 @@ namespace RouteCityTests
 
             int source = 0;
             int target = 9;
-            int shortestPath = sd.ShortestPath(testNodeNetwork, source, target);
+            int shortestPath = sd.ShortestPath(testNodeNetwork, source, target)[0][0];
             Assert.AreEqual(10, shortestPath);
         }
         [Test]
@@ -38,7 +38,7 @@ namespace RouteCityTests
 
             int source = 0;
             int target = 0;
-            int shortestPath = sd.ShortestPath(testNodeNetwork, source, target);
+            int shortestPath = sd.ShortestPath(testNodeNetwork, source, target)[0][0];
             Assert.AreEqual(0, shortestPath);
         }
     }

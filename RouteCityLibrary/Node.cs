@@ -41,7 +41,7 @@ namespace RouteCityLibrary
             //checks distance between node 1 and all other nodes to make sure the network is closed, else returns CreateNodeNetwork
             for (int i = 0; i < 10; i++)
             {
-                if (sd.ShortestPath(nodeNetwork, 0, i) == int.MaxValue)
+                if (sd.ShortestPath(nodeNetwork, 0, i)[0][0] == int.MaxValue)
                 {
                     return CreateNodeNetwork();
                 }

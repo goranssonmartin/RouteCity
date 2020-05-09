@@ -38,6 +38,7 @@
             this.explanationLabel = new System.Windows.Forms.Label();
             this.nodeNetworkDrawing = new System.Windows.Forms.PictureBox();
             this.createNewNetworkButton = new System.Windows.Forms.Button();
+            this.shortestPathText = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nodeNetworkGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nodeNetworkDrawing)).BeginInit();
             this.SuspendLayout();
@@ -93,7 +94,7 @@
             this.nodeNetworkGridView.AllowUserToResizeColumns = false;
             this.nodeNetworkGridView.AllowUserToResizeRows = false;
             this.nodeNetworkGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.nodeNetworkGridView.Location = new System.Drawing.Point(16, 166);
+            this.nodeNetworkGridView.Location = new System.Drawing.Point(12, 166);
             this.nodeNetworkGridView.Name = "nodeNetworkGridView";
             this.nodeNetworkGridView.ReadOnly = true;
             this.nodeNetworkGridView.Size = new System.Drawing.Size(351, 272);
@@ -102,15 +103,16 @@
             // resultText
             // 
             this.resultText.AutoSize = true;
-            this.resultText.Location = new System.Drawing.Point(9, 100);
+            this.resultText.Font = new System.Drawing.Font("Arial", 12F);
+            this.resultText.Location = new System.Drawing.Point(12, 84);
             this.resultText.Name = "resultText";
-            this.resultText.Size = new System.Drawing.Size(0, 13);
+            this.resultText.Size = new System.Drawing.Size(28, 18);
             this.resultText.TabIndex = 8;
             // 
             // explanationLabel
             // 
             this.explanationLabel.AutoSize = true;
-            this.explanationLabel.Location = new System.Drawing.Point(16, 147);
+            this.explanationLabel.Location = new System.Drawing.Point(12, 147);
             this.explanationLabel.Name = "explanationLabel";
             this.explanationLabel.Size = new System.Drawing.Size(535, 13);
             this.explanationLabel.TabIndex = 9;
@@ -135,11 +137,21 @@
             this.createNewNetworkButton.UseVisualStyleBackColor = true;
             this.createNewNetworkButton.Click += new System.EventHandler(this.CreateNewNetworkButton_Click);
             // 
+            // shortestPathtext
+            // 
+            this.shortestPathText.AutoSize = true;
+            this.shortestPathText.Font = new System.Drawing.Font("Arial", 12F);
+            this.shortestPathText.Location = new System.Drawing.Point(12, 102);
+            this.shortestPathText.Name = "shortestPathtext";
+            this.shortestPathText.Size = new System.Drawing.Size(26, 18);
+            this.shortestPathText.TabIndex = 12;
+            // 
             // NodeNetworkWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(926, 450);
+            this.Controls.Add(this.shortestPathText);
             this.Controls.Add(this.createNewNetworkButton);
             this.Controls.Add(this.nodeNetworkDrawing);
             this.Controls.Add(this.explanationLabel);
@@ -171,6 +183,7 @@
         private System.Windows.Forms.Label explanationLabel;
         private System.Windows.Forms.PictureBox nodeNetworkDrawing;
         private System.Windows.Forms.Button createNewNetworkButton;
+        private System.Windows.Forms.Label shortestPathText;
     }
 }
 

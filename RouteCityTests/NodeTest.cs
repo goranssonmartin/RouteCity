@@ -60,5 +60,17 @@ namespace RouteCityTests
                 Assert.IsTrue(correctValue);
             }
         }
+
+        [Test]
+        public void TestThatTheNetworkOfNodesIsAClosedNetwork() {
+            ShortestDistance sd = new ShortestDistance();
+            Node nd = new Node();
+            int[][] arrayToTest = nd.CreateNodeNetwork();
+            for (int i = 0; i < 10; i++)
+            {
+                Assert.AreNotEqual(int.MaxValue, sd.ShortestPath(arrayToTest, 0, i)[0][0]);
+            }
+
+        }
     }
 }
