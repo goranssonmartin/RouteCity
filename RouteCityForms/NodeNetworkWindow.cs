@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Text;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -146,16 +148,16 @@ namespace RouteCityForms
         //Creates the background image used in the picturebox displaying the network of nodes
         private static Bitmap CreateNewBitmap()
         {
-            Bitmap pathwaysBackground = new Bitmap(500, 250);
-            Color backgroundColor = Color.FromArgb(255, 255, 255, 255);
+            Bitmap nodeNetworkBackground = new Bitmap(500, 250);
+            Color backgroundColor = Color.FromArgb(255, 240, 240, 240);
             for (int i = 0; i < 500; i++)
             {
                 for (int j = 0; j < 250; j++)
                 {
-                    pathwaysBackground.SetPixel(i, j, backgroundColor);
+                    nodeNetworkBackground.SetPixel(i, j, backgroundColor);
                 }
             }
-            return pathwaysBackground;
+            return nodeNetworkBackground;
         }
         //Sets all the default coordinates of where the nodes can be drawn, first value in each array is x coordinate, second value is y coordinate
         private static int[][] SetCoordinates()
@@ -169,8 +171,8 @@ namespace RouteCityForms
             coordinatesArray[5] = new int[] { 252, 187 };
             coordinatesArray[6] = new int[] { 368, 10 };
             coordinatesArray[7] = new int[] { 368, 220 };
-            coordinatesArray[8] = new int[] { 328, 105 };
-            coordinatesArray[9] = new int[] { 450, 125 };
+            coordinatesArray[8] = new int[] { 425, 180 };
+            coordinatesArray[9] = new int[] { 450, 80 };
             return coordinatesArray;
         }
 
@@ -181,11 +183,17 @@ namespace RouteCityForms
             {
 
                 using (var g = Graphics.FromImage(nodeNetworkDrawing.Image))
-                {
-                    Pen pen = new Pen(Color.Black, 2);
+                {   //makes the text and lines more defined and less pixely
+                    g.InterpolationMode = InterpolationMode.High;
+                    g.SmoothingMode = SmoothingMode.HighQuality;
+                    g.TextRenderingHint = TextRenderingHint.AntiAlias;
+                    g.CompositingQuality = CompositingQuality.HighQuality;
+                    //creates a pen and a font
+                    Pen pen = new Pen(Color.Black, 3);
                     Font myFont = new Font("Arial", 12, FontStyle.Bold);
+                    //draws and ellipse and types the node name inside of it
                     g.DrawEllipse(pen, new Rectangle(listOfNodeCoordinates[i].xCoord, listOfNodeCoordinates[i].yCoord, 25, 25));
-                    g.DrawString((listOfNodeCoordinates[i].whichNode + 1).ToString(), myFont, Brushes.Black, listOfNodeCoordinates[i].xCoord + 5, listOfNodeCoordinates[i].yCoord + 5);
+                    g.DrawString((listOfNodeCoordinates[i].whichNode + 1).ToString(), myFont, Brushes.Black, listOfNodeCoordinates[i].xCoord+4, listOfNodeCoordinates[i].yCoord + 5);
                     pen.Dispose();
                 }
             }
@@ -215,6 +223,7 @@ namespace RouteCityForms
         //draws every path between nodes
         private void DrawPaths()
         {
+            Random rnd = new Random();
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -240,10 +249,23 @@ namespace RouteCityForms
 
                             using (var g = Graphics.FromImage(nodeNetworkDrawing.Image))
                             {
-                                Pen pen = new Pen(Color.FromArgb(255, 4, 173, 208), 3);
-                                Font myFont = new Font("Arial", 12, FontStyle.Bold);
+                                //makes the text and lines more defined and less pixely
+                                g.InterpolationMode = InterpolationMode.High;
+                                g.SmoothingMode = SmoothingMode.HighQuality;
+                                g.TextRenderingHint = TextRenderingHint.AntiAlias;
+                                g.CompositingQuality = CompositingQuality.HighQuality;
+                                //creates a new path based on the weight of the node connection
+                                GraphicsPath p = new GraphicsPath();
+                                p.AddString(nodeNetwork[i][j].ToString(), FontFamily.GenericSansSerif, (int)FontStyle.Bold, 19, new Point(middleOfLine[0], middleOfLine[1]), new StringFormat());
+                                //creates a random color and a pen with the random color
+                                Color color = Color.FromArgb(255, rnd.Next(0, 175), rnd.Next(0, 175), rnd.Next(0, 175));
+                                Pen pen = new Pen(color, 5);
+                                //draw the line between the nodes
                                 g.DrawLine(pen, startPointCoordinates.anchors[closestNodes[0]][0] + 12, startPointCoordinates.anchors[closestNodes[0]][1] + 12, endPointCoordinates.anchors[closestNodes[1]][0] + 12, endPointCoordinates.anchors[closestNodes[1]][1] + 12);
-                                g.DrawString(nodeNetwork[i][j].ToString(), myFont, new SolidBrush(Color.Black), middleOfLine[0], middleOfLine[1]);
+                                //draw the text path using white color
+                                g.DrawPath(new Pen(Color.White, 4), p);
+                                //fill the next path with the same color as the line
+                                g.FillPath(new SolidBrush(color), p);
                                 pen.Dispose();
                             }
 
@@ -294,6 +316,9 @@ namespace RouteCityForms
             listOfDrawnPaths.Clear();
             organizedCoordinates.Clear();
             listOfNodeCoordinates.Clear();
+            selectStartNodeComboBox.SelectedIndex = 0;
+            selectEndNodeComboBox.SelectedIndex = 0;
+            resultText.Text = "";
             nodeNetwork = nd.CreateNodeNetwork();
             nodeNetworkGridView.Rows.Clear();
             nodeNetworkGridView.Columns.Clear();
