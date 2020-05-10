@@ -350,10 +350,10 @@ namespace RouteCityForms
             listOfNodeCoordinates.Clear();
             selectStartNodeComboBox.SelectedIndex = 0;
             selectEndNodeComboBox.SelectedIndex = 0;
-            AddDataToRowsInDataGridView();
             resultText.Text = "";
             shortestPathText.Text = "";
             nodeNetwork = nd.CreateNodeNetwork();
+            AddDataToRowsInDataGridView();
             nodeCoordinates = SetCoordinates();
             nodeNetworkDrawing.Image = CreateNewBitmap();
             OrganizeCoordinates();
