@@ -29,7 +29,8 @@ namespace RouteCityForms
             nodeNetwork = nd.CreateNodeNetwork();
             nodeCoordinates = SetCoordinates();
             AddColumnsToDataGridView();
-            AddRowsToDataGridView();
+            nodeNetworkGridView.RowCount = 10;
+            AddDataToRowsInDataGridView();
             AddComboBoxValues();
             nodeNetworkDrawing.Image = CreateNewBitmap();
             OrganizeCoordinates();
@@ -133,9 +134,8 @@ namespace RouteCityForms
             selectEndNodeComboBox.SelectedIndex = 0;
         }
         //adds rows to the datagridview based of the nodeNetwork array
-        private void AddRowsToDataGridView()
+        private void AddDataToRowsInDataGridView()
         {
-            nodeNetworkGridView.RowCount = 10;
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -350,14 +350,11 @@ namespace RouteCityForms
             listOfNodeCoordinates.Clear();
             selectStartNodeComboBox.SelectedIndex = 0;
             selectEndNodeComboBox.SelectedIndex = 0;
+            AddDataToRowsInDataGridView();
             resultText.Text = "";
             shortestPathText.Text = "";
             nodeNetwork = nd.CreateNodeNetwork();
-            nodeNetworkGridView.Rows.Clear();
-            nodeNetworkGridView.Columns.Clear();
             nodeCoordinates = SetCoordinates();
-            AddColumnsToDataGridView();
-            AddRowsToDataGridView();
             nodeNetworkDrawing.Image = CreateNewBitmap();
             OrganizeCoordinates();
             DrawPaths();
