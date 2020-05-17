@@ -117,7 +117,7 @@
             this.explanationLabel.Size = new System.Drawing.Size(535, 13);
             this.explanationLabel.TabIndex = 9;
             this.explanationLabel.Text = "Every column is a node and each row shows which node it is connected to and what " +
-    "weight the connection has";
+    "weight the connection has.";
             // 
             // nodeNetworkDrawing
             // 

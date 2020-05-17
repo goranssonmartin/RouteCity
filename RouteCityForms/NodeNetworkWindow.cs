@@ -20,7 +20,6 @@ namespace RouteCityForms
         private int[][] nodeCoordinates;
         private List<int[]> listOfDrawnPaths = new List<int[]>();
         private Node nd = new Node();
-        Calculator calc = new Calculator();
         private List<int> organizedCoordinates = new List<int>();
         private List<Coordinates> listOfNodeCoordinates = new List<Coordinates>();
         public NodeNetworkWindow()
@@ -243,9 +242,9 @@ namespace RouteCityForms
                             Coordinates startPointCoordinates = listOfNodeCoordinates[startPointIndex];
                             Coordinates endPointCoordinates = listOfNodeCoordinates[endPointIndex];
                             //calculates the shortest draw distance between the start node and end nodes anchor points
-                            int[] closestNodes = calc.GetClosestNodes(startPointCoordinates, endPointCoordinates);
+                            int[] closestNodes = Calculator.GetClosestAnchorPointsOfTwoGivenNodes(startPointCoordinates, endPointCoordinates);
                             //calculates the coordinates at the middle of the line between the nodes, used to print the path weight
-                            int[] middleOfLine = calc.GetMiddleOfLine(startPointCoordinates.anchors[closestNodes[0]], endPointCoordinates.anchors[closestNodes[1]]);
+                            int[] middleOfLine = Calculator.GetMiddleOfLine(startPointCoordinates.anchorPoints[closestNodes[0]], endPointCoordinates.anchorPoints[closestNodes[1]]);
 
                             using (var g = Graphics.FromImage(nodeNetworkDrawing.Image))
                             {
@@ -261,7 +260,7 @@ namespace RouteCityForms
                                 Color color = Color.FromArgb(255, rnd.Next(0, 175), rnd.Next(0, 175), rnd.Next(0, 175));
                                 Pen pen = new Pen(color, 5);
                                 //draw the line between the nodes
-                                g.DrawLine(pen, startPointCoordinates.anchors[closestNodes[0]][0] + 12, startPointCoordinates.anchors[closestNodes[0]][1] + 12, endPointCoordinates.anchors[closestNodes[1]][0] + 12, endPointCoordinates.anchors[closestNodes[1]][1] + 12);
+                                g.DrawLine(pen, startPointCoordinates.anchorPoints[closestNodes[0]][0] + 12, startPointCoordinates.anchorPoints[closestNodes[0]][1] + 12, endPointCoordinates.anchorPoints[closestNodes[1]][0] + 12, endPointCoordinates.anchorPoints[closestNodes[1]][1] + 12);
                                 //draw the text path using white color
                                 g.DrawPath(new Pen(Color.White, 4), p);
                                 //fill the next path with the same color as the line

@@ -3,7 +3,7 @@ using RouteCityLibrary;
 
 namespace RouteCityTests
 {
-    public class Tests
+    public class NodeTest
     {
 
         [Test]
@@ -37,26 +37,15 @@ namespace RouteCityTests
             int[][] testArray = nd.CreateNodeNetwork();
             for (int i = 0; i < 10; i++)
             {
-                int counter = 0;
-                bool correctNumberOfConnections = false;
                 bool correctValue = true;
                 for (int j = 0; j < 10; j++)
                 {
-                    if (testArray[i][j] != 0)
-                    {
-                        counter++;
-                    }
 
                     if (testArray[i][j] < 0 || testArray[i][j] > 10)
                     {
                         correctValue = false;
                     }
                 }
-                if (counter == 2 || counter == 3)
-                {
-                    correctNumberOfConnections = true;
-                }
-                Assert.IsTrue(correctNumberOfConnections);
                 Assert.IsTrue(correctValue);
             }
         }
